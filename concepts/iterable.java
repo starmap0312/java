@@ -1,5 +1,7 @@
+// iterable: has iterator() method
+// iterator: has next() method
 
-// an implementation of Iteratable<T>
+// an implementation of Iterable<T>
 public class MyIterable<T> implements Iterable<T>{
 
     public Iterator<T> iterator() {
@@ -20,7 +22,6 @@ public class MyIterator<T> implements Iterator<T> {
 }
 
 // use the MyIterable with the for-loop
-
 public static void main(String[] args) {
 
     MyIterable<String> iterable = new MyIterable<String>();
