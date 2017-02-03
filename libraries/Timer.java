@@ -1,4 +1,4 @@
-public class NanoTime {
+public class Timer {
 
     public static void main(String[] args) {
         // 1) System.currentTimeMillis(): elapsed time in milliseconds since the epoch
