@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Collections;
@@ -15,8 +16,8 @@ public class Containers {
             System.out.println(arr[i]);
         }
 
-        // ArrayList<T>
-        ArrayList<String> al = new ArrayList<String>();
+        // ArrayList<T>: implements interface List<T>
+        List<String> al = new ArrayList<String>();
         al.add("efg");
         al.add("bcd");
         al.add("abc");
@@ -26,8 +27,8 @@ public class Containers {
             System.out.println(s);
         }
 
-        // LinkedList<T>
-        LinkedList<Integer> ll = new LinkedList<Integer>();
+        // LinkedList<T>: implements interface List<T>
+        List<Integer> ll = new LinkedList<Integer>();
         ll.add(3);
         ll.add(2);
         ll.add(1);
