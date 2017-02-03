@@ -21,11 +21,13 @@ public class Containers {
         al.add("efg");
         al.add("bcd");
         al.add("abc");
-        // Collections.sort
+        // use Collections.sort to sort the List elements
         Collections.sort(al);
         for (Object s: al) {
             System.out.println(s);
         }
+        // initialize a List object via another List object
+        List<String> al2 = new ArrayList<String>(al);
 
         // LinkedList<T>: implements interface List<T>
         List<Integer> ll = new LinkedList<Integer>();

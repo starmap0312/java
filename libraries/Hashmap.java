@@ -1,12 +1,14 @@
-import java.util.Map;
+import java.util.Set;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
 
 public class Hashmap {
 
     public static void main(String[] args) {
-        HashSet<String> s = new HashSet<String>();
+        // 1) HashSet<T>: implements interface Set<T>
+        Set<String> s = new HashSet<String>();
         s.add("d");
         s.add("c");
         s.add("a");
@@ -15,7 +17,8 @@ public class Hashmap {
             System.out.println(it.next());
         }
 
-        HashMap<Integer, String> mp = new HashMap<Integer, String>();
+        // 2) HashMap<T1, T2>: implements interface Map<T1, T2>
+        Map<Integer, String> mp = new HashMap<Integer, String>();
         // put(key, value): insert key, value pair into the hashmap
         mp.put(3, "three");
         mp.put(2, "two");

@@ -1,6 +1,6 @@
 // example 1:
 // interface: (filename: Comparable.java)
-public interface Comparable<T> {        // <T>: a parameterized/generic type
+interface Comparable<T> {        // <T>: a parameterized/generic type
 
     public abstract int compareTo(T o); // return <0: this is less than o
                                         // return  0: this is equal to o
@@ -8,7 +8,7 @@ public interface Comparable<T> {        // <T>: a parameterized/generic type
 }
 
 // implementation: (filename: Person.java)
-public class Person implements Comparable<Person> {
+class Person implements Comparable<Person> {
 
     @Override
     public int compareTo(Person o) {
@@ -18,13 +18,13 @@ public class Person implements Comparable<Person> {
 
 // example 2:
 // interface:
-public interface List<T> {
+interface List<T> {
 
     public abstract T add(T element);
     public abstract int size();
 }
 
-public class ListNode<T> {
+class ListNode<T> {
 
     ListNode<T> prev;            // recursive data type (default: null)
     ListNode<T> next;            // recursive data type (default: null)
@@ -36,7 +36,7 @@ public class ListNode<T> {
 }
 
 // implementation
-public class LinkedList<T> implements List<T> {
+class LinkedList<T> implements List<T> {
 
     private ListNode<T> head;
     private ListNode<T> tail;
