@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.Queue;
+import java.util.PriorityQueue;
 
 public class Containers {
 
@@ -78,6 +79,22 @@ public class Containers {
         while (!q.isEmpty()) {
             System.out.println(q.peek());
             q.remove();
+        }
+
+        // 8) PriorityQueue<T>:
+        // 8.1) min-heap (default)
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(); // default: min-heap
+        pq.add(5); pq.add(3); pq.add(4); pq.add(1); pq.add(2);
+        while (!pq.isEmpty()) {
+            System.out.println(pq.peek());
+            pq.remove();
+        }
+        // 8.2) max-heap: PriorityQueue<T>(Comparator<T> comparator)
+        PriorityQueue<Integer> pq2 = new PriorityQueue<Integer>(Collections.reverseOrder());
+        pq2.add(5); pq2.add(3); pq2.add(4); pq2.add(1); pq2.add(2);
+        while (!pq2.isEmpty()) {
+            System.out.println(pq2.peek());
+            pq2.remove();
         }
     }
 }
