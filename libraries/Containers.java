@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Stack;
+import java.util.Queue;
 
 public class Containers {
 
@@ -61,6 +63,21 @@ public class Containers {
         while (itr.hasNext()) {
             Map.Entry e = (Map.Entry) itr.next();
             System.out.println("(" + e.getKey() + ", " + e.getValue() + ")");
+        }
+
+        // 6) Stack<T>: LIFO
+        Stack<Integer> st = new Stack<Integer>();
+        st.push(1); st.push(2); st.push(3);
+        while (!st.empty()) {
+            System.out.println(st.pop());
+        }
+
+        // 7) Queue<T>: FIFO
+        Queue<Integer> q = new LinkedList<Integer>();
+        q.add(1); q.add(2); q.add(3);
+        while (!q.isEmpty()) {
+            System.out.println(q.peek());
+            q.remove();
         }
     }
 }
