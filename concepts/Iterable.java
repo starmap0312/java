@@ -16,16 +16,16 @@
 //         itr = itr.next();
 //     }
 
-// an implementation of Iterable<T>
 public class MyIterable<T> implements Iterable<T>{
+    // an implementation of Iterable<T>
 
     public Iterator<T> iterator() {
         return new MyIterator<T>();
     }
 }
 
-// an implementation of Iterator<T>
 public class MyIterator<T> implements Iterator<T> {
+    // an implementation of Iterator<T>
 
     public boolean hasNext() {
         // ...
@@ -36,11 +36,10 @@ public class MyIterator<T> implements Iterator<T> {
     }
 }
 
-// use the MyIterable with the for-loop
 public static void main(String[] args) {
 
+    // use MyIterable to access data with a for-each loop
     MyIterable<String> iterable = new MyIterable<String>();
-
     for(String string: iterable){
 
     }
