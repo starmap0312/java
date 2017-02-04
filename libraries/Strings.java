@@ -3,10 +3,16 @@ public class Strings {
     public static void main(String[] args) {
         String str1 = new String("abcde");  // this creates an immutable String object in heap
         String str2 = new String("abcde");
-        // 0) concat() or +: create a new String object that concats two strings
+        // 1.0) length():
+        System.out.println(str1.length());
+        // 1.1) indexOf(substr, [pos]):
+        System.out.println(str1.indexOf("c"));
+        // 1.2) substring(start, end):
+        System.out.println(str1.substring(2, 4));
+        // 1.3) concat() or +: create a new String object that concats two strings
         String str3 = str1.concat(str2) + "123"; 
         System.out.println(str3); 
-        // 1) charAt(): reference indivisual character, note that str1[3] is WRONG
+        // 1.4) charAt(): reference indivisual character, note that str1[3] is WRONG
         System.out.println(str1.charAt(2));
         // 2) str1 == str2 vs. str1.equals(str2)
         if (str1 == str2) {
