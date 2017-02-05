@@ -20,7 +20,7 @@ public class Containers {
         for (Object s: arr) {
             System.out.println(s);
         }                                       // Array vs. String: ex. String str = "123";
-        for (int i = 0; i < arr.length; i++) {  //   str.length()  vs. arr.length
+        for (int i = 0; i < arr.length; i++) {  //   str.length()  vs. arr.length (length does not change once allocated)
             System.out.println(arr[i]);         //   str.charAt[i] vs. arr[i]
         }
 
