@@ -17,5 +17,21 @@ public class Primitives {
         Float     f2 = 123.4f;
         double    d1 = 456.7d;
         Double    d2 = 456.7d;
+
+        // 1) Integer.parseInt(str): i.e. C++ atoi(c_str)
+        String str1 = new String("123");       // compile error if String is assigned to Integer directly
+        Integer num1 = Integer.parseInt(str1);
+        System.out.println(num1);
+        // 2) Double.parseDouble(str)
+        String str2 = new String("123.456");
+        Double num2 = Double.parseDouble(str2);
+        System.out.println(num2);
+        // 3) Character.toLowerCase(char), Character.toUpperCase(char)
+        //    Character.isLowerCase(char), Character.isUpperCase(char)
+        //    Character.isDigit(char), Character.isAlphabetic(char)
+        Character c = 'D';
+        if (Character.isAlphabetic(c) && Character.isUpperCase(c)) {
+            System.out.println(Character.toLowerCase(c));
+        }
     }
 }

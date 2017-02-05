@@ -19,9 +19,16 @@ public class Containers {
         String arr[] = {"abc", "bcd", "efg"};
         for (Object s: arr) {
             System.out.println(s);
+        }                                       // Array vs. String: ex. String str = "123";
+        for (int i = 0; i < arr.length; i++) {  //   str.length()  vs. arr.length
+            System.out.println(arr[i]);         //   str.charAt[i] vs. arr[i]
         }
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+
+        int numbers[] = new int[2];             // create an array of Integer objects in heap (default: 0)
+        Integer integers[] = new Integer[2];    // create an array of Integer objects in heap (default: null)
+        for (int i = 0; i < numbers.length; i += 1) {
+            System.out.println(numbers[i]);
+            System.out.println(integers[i]);
         }
 
         // 2) ArrayList<T>: implements interface List<T>
