@@ -1,7 +1,7 @@
 import junit.framework.Test;
 import junit.framework.TestCase;
 
-public class AppTest extends TestCase {
+public class UnitTest extends TestCase {
     public void testApp() {
         // fail("this will throw AssertionFailedError");
         assertTrue(true);
