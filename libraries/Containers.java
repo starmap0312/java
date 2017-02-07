@@ -66,12 +66,23 @@ public class Containers {
         // 5.3) remove(): remove value via key 
         mp.remove(2);
 
-        // 5.4) entrySet().iterator(): iterate the hashmap using Iterator
+        // 5.4) entrySet(): an iterable object and it provides iterator() method
+        // using iterator and while-loop
         Iterator itr = mp.entrySet().iterator();
         while (itr.hasNext()) {
-            Map.Entry e = (Map.Entry) itr.next();
-            System.out.println("(" + e.getKey() + ", " + e.getValue() + ")");
+            Map.Entry entry = (Map.Entry) itr.next();
+            System.out.println("(" + entry.getKey() + ", " + entry.getValue() + ")");
         }
+
+        // using for-each loop
+        for (Map.Entry<Integer, String> entry : mp.entrySet()) {
+            System.out.println("(" + entry.getKey() + ", " + entry.getValue() + ")");
+        }
+
+        // using forEach and lambda expression (Java 8)
+        mp.forEach((key, value)->{
+            System.out.println("(" + key + ", " + value + ")");
+        });
 
         // 6) Stack<T>: LIFO
         Stack<Integer> st = new Stack<Integer>();
