@@ -7,4 +7,9 @@ public class UnitTest extends TestCase {
         assertTrue(true);
         assertEquals("check two strings", "abc", "abc"); 
     }
+
+    public static void main(String[] args) {
+        UnitTest test = new UnitTest();
+        test.testApp();
+    }    
 }

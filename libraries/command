@@ -1,0 +1,7 @@
+// JSoup
+javac -cp ./jsoup-1.10.2.jar JSoup.java
+java -cp .:./jsoup-1.10.2.jar JSoup
+
+// UnitTest
+javac -cp ./junit-4.12.jar UnitTest.java
+java -cp .:./junit-4.12.jar UnitTest
