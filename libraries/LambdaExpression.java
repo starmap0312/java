@@ -42,7 +42,7 @@ interface SingleParameterFunction {
 public class LambdaExpression {
 
     public static void main(String[] args) {
-        // 1) creat a function object via anonymous class
+        // 1) create a function object via anonymous class
         NoReturnFunction func1 = new NoReturnFunction() {
             @Override
             public void eval() {
@@ -77,6 +77,6 @@ public class LambdaExpression {
         // 3) pass function object to Container's forEach() method 
         List<String> list = new ArrayList<String>();
         list.add("one"); list.add("two"); list.add("three");
-        list.forEach(x -> System.out.println(x));
+        list.forEach(x -> System.out.println(x)); // the created function object will be converted to Consumer object at run-time
     }
 }
