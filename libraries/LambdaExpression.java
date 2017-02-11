@@ -9,9 +9,9 @@ import java.util.ArrayList;
 //           -> {}                       ... do nothing
 //           -> System.out.println("X"); ... print "X"
 //           -> {
-//              System.out.println("X"); ... print "X" & return 0
-//              return 0;
-//     }
+//                  System.out.println("X"); ... print "X" & return 0
+//                  return 0;
+//              }
 
 interface ClassA {
     public void print();
@@ -35,8 +35,9 @@ public class LambdaExpression {
         list.add("one");
         list.add("two");
         list.add("three");
-        list.forEach(x -> {
-            System.out.println(x);
-        });
+        list.forEach(x -> System.out.println(x));
+        //list.forEach(x -> {
+        //    System.out.println(x);
+        //});
     }
 }

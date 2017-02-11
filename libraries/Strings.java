@@ -54,5 +54,10 @@ public class Strings {
         sb.append("string");
         sb.insert(7, " ");
         System.out.println(sb);
+        // 7) replaceAll(regex, replacement)
+        System.out.println(str4.replaceAll("c|e", "xxx"));
+        // 8) trim(): returns a copy of the string, with leading and trailing whitespace omitted
+        String str6 = "  strings with spaces    ";
+        System.out.println(str6.trim());
     }
 }
