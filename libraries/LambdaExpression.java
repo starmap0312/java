@@ -1,14 +1,13 @@
 // Lambda expression in Java 8
 // 1) it facilitates functional programming and simplifies the development
-// 2) syntax
+// 2) syntax characteristics
 //    [parameter] -> [expression body]
-// 3) characteristics
 //    a) Optional type declaration: No need to declare the type of a parameter (let compiler inference)
 //    b) Optional parenthesis for single parameter (parentheses are required for multiple parameters)
 //    c) Optional curly braces for single statement: no curly braces is needed if the body contains a single statement
 //    d) Optional return keyword for single expression: compiler automatically returns value if body has a single expression
 //         (curly braces are required to indicate that expression returns a value)
-// 4) examples:
+// examples:
 //    parameter:
 //        () ->                              ... no input
 //       (x) ->                              ... one parameter
@@ -22,6 +21,9 @@
 //                  return 0;
 //              }
 //           -> single expression;           ... return value for single expression (syntax suger: no return keyword is needed)
+// 3) use with a container object
+//    pass a user-defined function object (callback object) to a container object
+//    each element in the contrainer will be passed to and applied by the function object
 import java.util.List;
 import java.util.ArrayList;
 
@@ -41,13 +43,13 @@ public class LambdaExpression {
 
     public static void main(String[] args) {
         // 1) creat a function object via anonymous class
-        NoReturnFunction func = new NoReturnFunction() {
+        NoReturnFunction func1 = new NoReturnFunction() {
             @Override
             public void eval() {
                 System.out.println("create function object via anonymous class");
             }
         };
-        func.eval();
+        func1.eval();
 
         // 2) create function object via lambda expression
         // 2.1) () -> statement: no parameter and return void
