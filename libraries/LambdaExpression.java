@@ -21,9 +21,9 @@
 //                  return 0;
 //              }
 //           -> single expression;           ... return value for single expression (syntax suger: no return keyword is needed)
-// 3) use with a container object
-//    pass a user-defined function object (callback object) to a container object
-//    each element in the contrainer will be passed to and applied by the function object
+// 3) use with container's forEach([function_object]) method:
+//    traverse and pass each element of contrainer to a function_object for execution
+//    the passed-in function object works like callback function and will be converted to type Consumer at run-time
 import java.util.List;
 import java.util.ArrayList;
 
@@ -74,9 +74,9 @@ public class LambdaExpression {
         SingleParameterFunction func5 = x -> x * x; 
         System.out.println("retrun = " + func5.eval(4));
 
-        // 3) pass function object to Container's forEach() method 
+        // 3) traverse and pass each element of contrainer to a function_object for execution 
         List<String> list = new ArrayList<String>();
         list.add("one"); list.add("two"); list.add("three");
-        list.forEach(x -> System.out.println(x)); // the created function object will be converted to Consumer object at run-time
+        list.forEach(x -> System.out.println(x)); // the passed-in function object will be converted to type Consumer at run-time
     }
 }
