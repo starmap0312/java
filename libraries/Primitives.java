@@ -36,8 +36,11 @@ public class Primitives {
             System.out.println(Character.toLowerCase(c));
         }
 
-        // 4) Optional<T>: JAVA default NULL object
-        //    i.e. a container object which may or may not contain a non-null value
+        // 4) Optional<T>: JAVA default NULL object (a container object)
+        //    use of null may imply many different things: no-nexistence, not initialized, function return
+        //      this causes many unexpected results and increase the difficulty of debugging 
+        //    use of Optional object is a clear indication that it may contain a null value
+        //      one can then design the control flow accordingly
         Optional<String> nullObject = Optional.empty();
         if (nullObject.isPresent()) {
             nullObject.get();                   // this will thow NoSuchElementException if no value present 
