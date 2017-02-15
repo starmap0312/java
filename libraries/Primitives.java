@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class Primitives {
 
     public static void main(String[] args) {
@@ -33,5 +35,14 @@ public class Primitives {
         if (Character.isAlphabetic(c) && Character.isUpperCase(c)) {
             System.out.println(Character.toLowerCase(c));
         }
+
+        // 4) Optional<T>: JAVA default NULL object
+        //    i.e. a container object which may or may not contain a non-null value
+        Optional<String> nullObject = Optional.empty();
+        if (nullObject.isPresent()) {
+            nullObject.get();                   // this will thow NoSuchElementException if no value present 
+        }
+        nullObject = Optional.of("value");
+        System.out.println(nullObject.get());
     }
 }
