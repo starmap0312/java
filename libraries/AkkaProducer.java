@@ -39,9 +39,12 @@ public class AkkaProducer {
         // Step 2) create an ActorRef handle based on the Consumer class (extends UntypedActor)
         ActorRef printNumbersConsumer = system.actorOf(Props.create(Consumer.class));
 
-        // tell():
-        //   it means “fire-and-forget”
-        //     ex. send a message asynchronously and return immediately 
+        // tell(): it means "fire-and-forget"
+        //   it sends a message asynchronously and return immediately 
+        //   in Scala, use: myActor ! message
+        // ask():
+        //   it sends a message asynchronously and returns a Future representing a possible reply
+        //   in Scala, use: myActor ? message
         // ActorRef.noSender():
         //   it is used when you are not inside an actor or do not want to pass the sender
         for (int i = 1; i <= 10; i++) {
