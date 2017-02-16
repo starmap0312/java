@@ -48,18 +48,18 @@ class Application {
     }
 }
 
+class BindingModule extends AbstractModule {
+    @Override
+    public void configure() {
+        this.bind(Message.class).toInstance(new Facebook());
+    }
+}
+
 public class GoogleGuice {
 
     public static void main(String[] args) {
-        // Guice.createInjector(AbstractModule): create injector to bind the Message interface at run-time
-        Injector injector = Guice.createInjector(
-            new AbstractModule() {
-                @Override
-                public void configure() {
-                    this.bind(Message.class).toInstance(new Facebook()); 
-                }
-            }
-        );
+        // Guice.createInjector(AbstractModule): create injector & module to bind Message at run-time
+        Injector injector = Guice.createInjector(new BindingModule());
         // getInstance([classname]): create instance via the injector at run-time
         Application app = injector.getInstance(Application.class);
         app.send("Hello", "World");
