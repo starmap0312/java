@@ -1,3 +1,4 @@
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Optional;
 
 public class Primitives {
@@ -21,12 +22,14 @@ public class Primitives {
         Double    d2 = 456.7d;
 
         // 1) Integer.parseInt(str): i.e. C++ atoi(c_str)
-        String str1 = new String("123");       // compile error if String is assigned to Integer directly
-        Integer num1 = Integer.parseInt(str1);
+        Integer num1 = 123;
         System.out.println(num1);
+        // 1.1) AtomicInteger: support lock-free and thread-safe programming on a single integer variable
+        AtomicInteger atomicInt = new AtomicInteger(123);
+        System.out.println(atomicInt);
+
         // 2) Double.parseDouble(str)
-        String str2 = new String("123.456");
-        Double num2 = Double.parseDouble(str2);
+        Double num2 = 123.456; 
         System.out.println(num2);
         // 3) Character.toLowerCase(char), Character.toUpperCase(char)
         //    Character.isLowerCase(char), Character.isUpperCase(char)
