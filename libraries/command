@@ -10,6 +10,10 @@ java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-acto
 javac -cp ./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaPi.java
 java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaPi
 
+// AkkaCircuitBreakder
+javac -cp ./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaCircuitBreaker.java
+java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaCircuitBreaker
+
 // TypeSafeConfig
 javac -cp ./lib/config-1.2.1.jar TypeSafeConfig.java 
 java -cp .:./lib/config-1.2.1.jar TypeSafeConfig

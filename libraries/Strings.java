@@ -23,14 +23,14 @@ public class Strings {
             System.out.println("str1 & str1_copy refer to the same object");
         }
         if (str1.equals(str1_copy)) {
-            System.out.println("str1 & str1_copy refer to the same object and have the same content");
+            System.out.println("str1 & str1_copy may refer to different objects but have the same content");
         }
         String str2 = new String("abcde");         // a new immutable String object
         if (str1 == str2) {
             System.out.println("str1 & str2 refer to the same object");
         }
         if (str1.equals(str2)) {
-            System.out.println("str1 & str2 refer to different objects but have the same content");
+            System.out.println("str1 & str2 may refer to different objects but have the same content");
         }
         // 3) toCharArray(): creates a copy of array object of char
         char cArray[] = str1.toCharArray(); // this creates an array object of char in heap 

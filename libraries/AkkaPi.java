@@ -194,8 +194,13 @@ public class AkkaPi {
             // 4.2) Result   :
             if (message instanceof PiApproximation) {
                 PiApproximation approximation = (PiApproximation) message;
-                System.out.println(String.format("\n\tPi approximation: \t\t%s\n\tCalculation time: \t%s",
-                approximation.getPi(), approximation.getDuration()));
+                System.out.println(
+                    String.format(
+                        "\n\tPi approximation: \t\t%s\n\tCalculation time: \t%s",
+                        approximation.getPi(),
+                        approximation.getDuration()
+                    )
+                );
                 getContext().system().terminate();
             } else {
                 unhandled(message);

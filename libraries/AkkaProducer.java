@@ -1,13 +1,13 @@
 // Akka Actor Model
 //   a higher level of abstraction for writing concurrent and distributed systems
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.actor.UntypedActor;
+import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
+import akka.actor.Props;
 import java.util.concurrent.TimeUnit;
 
 class Consumer extends UntypedActor {
-    // UntypedActor:
+    // akka.actor.UntypedActor:
     //   it is the Java cousin to the Actor Scala interface
  
     @Override
@@ -21,7 +21,7 @@ class Consumer extends UntypedActor {
 public class AkkaProducer {
  
     public static void main(String[] args) {
-        // ActorSystem:
+        // akka.actor.ActorSystem:
         //   it extends ActorRefFactory
         //   it is a hierarchical group of actors which share common configuration like dispatchers, 
         //      deployments, remote capabilities and addresses
@@ -30,10 +30,10 @@ public class AkkaProducer {
         // Step 1) create an ActorSystem to look up actors
         ActorSystem system = ActorSystem.create("generate-numbers-one-to-ten");
 
-        // ActorRef:
+        // akka.actor.ActorRef:
         //   it is an immutable and serializable handle to an actor
         //   it is thread-safe and fully shareable
-        // Props:
+        // akka.actor.Props:
         //   it is a configuration object used for creating an Actor
         //
         // Step 2) create an ActorRef handle based on the Consumer class (extends UntypedActor)
