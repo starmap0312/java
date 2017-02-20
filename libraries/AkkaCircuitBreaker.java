@@ -57,7 +57,21 @@ class DangerousActor extends UntypedActor {
             new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("onOpen(): 2 failures that exceeds timeout of 3 seconds, circuit is now open for 10 seconds");
+                    System.out.println("onOpen(): 2 failures exceed timeout of 3 seconds, so the circuit is now open for 10 seconds");
+                }
+            }
+        ).onHalfOpen(
+            new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("onHalfOpen(): reset timeout of 10 seconds has passed, so the circuit is now half-open");
+                }
+            }
+        ).onClose(
+            new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("onClose(): the circuit is now close after a successful retry at half-open state");
                 }
             }
         );
@@ -114,7 +128,6 @@ public class AkkaCircuitBreaker {
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
-        System.out.println("10 seconds later: the circuit is in half-open state for a retry");
         master.tell("async request", ActorRef.noSender()); 
         //system.terminate();
     }
