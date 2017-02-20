@@ -37,8 +37,6 @@ import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.pattern.CircuitBreaker;
-import akka.event.Logging;
-import akka.event.LoggingAdapter;
 import static akka.pattern.Patterns.pipe;
 import static akka.dispatch.Futures.future;
 
@@ -46,55 +44,51 @@ import scala.concurrent.duration.Duration;
 
 class DangerousActor extends UntypedActor {
     private final CircuitBreaker breaker;
-    //private final LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
     public DangerousActor() {
         this.breaker = new CircuitBreaker(
             getContext().dispatcher(),
             getContext().system().scheduler(),
-            2,                               // 2 maximum failures: after that the circuit will be open
-            Duration.create(3, "seconds"),   // call timeout of 3 seconds: after that a request is taken as a failure
-            Duration.create(10, "seconds")   // reset timeout of 10 seconds: the circuit will remain open for 10 seconds 
-                                             //   after that it will enter half-open state for a re-try
+            2,                                 // 2 maximum failures: after that the circuit will be open for 10 seconds
+            Duration.create(3, "seconds"),     // call timeout of 3 seconds: after that a request is taken as a failure
+            Duration.create(10, "seconds")     // reset timeout of 10 seconds: the circuit will remain open for 10 seconds 
+                                               //   after that it will enter half-open state for a re-try
         ).onOpen(
             new Runnable() {
+                @Override
                 public void run() {
-                    //log.warning("CircuitBreaker is now open and will not close for 1 minute");
-                    System.out.println("circuit is now open for 1 minute");
+                    System.out.println("onOpen(): 2 failures that exceeds timeout of 3 seconds, circuit is now open for 10 seconds");
                 }
             }
         );
     }
 
     public String dangerousCall() {
-        return "This really isn't that dangerous of a call after all";
+        try {
+            Thread.sleep(5000);                 // sleep 5 seconds
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("  dangerous call(): respond after 5 seconds");
+        return "a dangerous call";
     }
 
     @Override
     public void onReceive(Object message) {
         if (message instanceof String) {
             String msg = (String) message;
-            if ("is my middle name".equals(msg)) {
-                pipe(
-                    breaker.callWithCircuitBreaker(
-                        () -> future(
-                            () -> dangerousCall(),
-                            getContext().dispatcher()
-                        )
-                    ),
-                    getContext().dispatcher()
-                ).to(
-                    getSender()
+            if ("async request".equals(msg)) {
+                System.out.println("received 1 async request");
+                breaker.callWithCircuitBreaker(
+                    () -> future(
+                        () -> dangerousCall(),
+                        getContext().dispatcher()
+                    )
                 );
             }
-            if ("block for me".equals(msg)) {
-                System.out.println("enter block for me");
-                getSender().tell(
-                    breaker.callWithSyncCircuitBreaker(
-                        () -> dangerousCall()
-                    ),
-                    getSelf()
-                );
+            if ("sync request".equals(msg)) {
+                System.out.println("received 1 sync request (blocking)");
+                breaker.callWithSyncCircuitBreaker(() -> dangerousCall());
             }
         }
     }
@@ -105,8 +99,24 @@ public class AkkaCircuitBreaker {
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("CircuitBreakerSystem");
         ActorRef master = system.actorOf(Props.create(DangerousActor.class));
-        master.tell("block for me", ActorRef.noSender()); 
-        system.terminate();
+        master.tell("async request", ActorRef.noSender()); 
+        master.tell("async request", ActorRef.noSender()); 
+        try {
+            Thread.sleep(8000);                 // sleep 8 seconds
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("(the following two calls will never be made due to the circuit is open now)");
+        master.tell("async request", ActorRef.noSender()); 
+        master.tell("async request", ActorRef.noSender()); 
+        try {
+            Thread.sleep(10000);                 // sleep 10 seconds
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("10 seconds later: the circuit is in half-open state for a retry");
+        master.tell("async request", ActorRef.noSender()); 
+        //system.terminate();
     }
 }
 
