@@ -20,5 +20,11 @@ public class Utilities {
         } catch(Exception e){
             e.printStackTrace();
         }
+        // 4) java.lang.Thread.sleep([milli-seconds]): sleep for milli-seconds
+        try {
+            Thread.sleep(1000);                  // sleep 1 seconds
+        } catch (InterruptedException ex) {      // checked exception: needs to be caught
+            Thread.currentThread().interrupt();
+        }
     }
 }
