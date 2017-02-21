@@ -49,10 +49,10 @@ class DangerousActor extends UntypedActor {
         this.breaker = new CircuitBreaker(
             getContext().dispatcher(),
             getContext().system().scheduler(),
-            2,                                 // 2 maximum failures: after that the circuit will be open for 10 seconds
-            Duration.create(3, "seconds"),     // call timeout of 3 seconds: after that a request is taken as a failure
-            Duration.create(10, "seconds")     // reset timeout of 10 seconds: the circuit will remain open for 10 seconds 
-                                               //   after that it will enter half-open state for a re-try
+            2,                                 // maximum failures = 2    times: after 2 failures circuit will be open for 10 seconds
+            Duration.create(3, "seconds"),     // call timeout     = 3  seconds: after 3 secs a request is seen as failed
+            Duration.create(10, "seconds")     // reset timeout    = 10 seconds: circuit stays in open state for 10 seconds each time
+                                               //                                after 10 secs it enters half-open state for a re-try
         ).onOpen(
             new Runnable() {
                 @Override
