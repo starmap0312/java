@@ -14,7 +14,6 @@ import java.util.PriorityQueue;
 public class Containers {
 
     public static void main(String[] args) {
-
         // 1) Array
         String arr[] = {"abc", "bcd", "efg"};
         for (Object s: arr) {
