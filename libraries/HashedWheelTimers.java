@@ -11,7 +11,7 @@
 
 import io.netty.util.HashedWheelTimer;
 
-public class WheelTimer {
+public class HashedWheelTimers {
 
     public static void main(String[] args) {
     }

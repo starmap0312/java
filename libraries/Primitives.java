@@ -1,5 +1,4 @@
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.Optional;
 
 public class Primitives {
 
@@ -38,19 +37,5 @@ public class Primitives {
         if (Character.isAlphabetic(c) && Character.isUpperCase(c)) {
             System.out.println(Character.toLowerCase(c));
         }
-
-        // 4) Optional<T>: JAVA default NULL object (a container object)
-        //    use of null implies ambiguous things: no-nexistence, not initialized, or a function's unknown return
-        //      this causes many unexpected results and increase the difficulty of debugging 
-        //    use of Optional object is a clear indication that it may contain a null value
-        //      one can then design the control flow accordingly
-        // 4.1) Optional.empty(): static method
-        Optional<String> nullObject = Optional.empty(); // create a nullObject intentionally
-        if (nullObject.isPresent()) {
-            nullObject.get();                           // will thow NoSuchElementException if no value present 
-        }
-        // 4.2) Optional.of(T): static method
-        Optional<String> valueObject = Optional.of("value");
-        System.out.println(valueObject.get());
     }
 }
