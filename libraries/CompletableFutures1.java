@@ -10,8 +10,8 @@
 // CompletableFuture/Promise:
 // 1) a sensible mechanism to mitigate callback hell and write clean asynchronous code
 //    it replaces callbacks which signal successful or exceptional completion of a function (it must be fulfilled at most once)
-// 2) it supports Lambdas (functional), parallelism (all its methods can run asyncrhonously) and it is event driven
-//                so we can build systems in a non-blocking fashion
+// 2) it supports Lambdas (functional), parallelism (all its methods can run asyncrhonously) 
+//    it is event driven so we can build systems in a non-blocking fashion
 // Two most typical use cases of CompletableFuture/Promise:
 //    useful whenever you want to collect the result of an asynchronous task or multiple asynchronous tasks
 // 1) Parallel computing on multiple CPU cores
