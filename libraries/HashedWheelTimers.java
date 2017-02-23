@@ -24,9 +24,11 @@ public class HashedWheelTimers {
 
     public static void main(String[] args) {
         HashedWheelTimer timer = new HashedWheelTimer();
-        // newTimeout(TimerTask task, long delay, TimeUnit unit):
-        //   schedules the specified TimerTask for one-time execution after the specified delay
+        // 1) newTimeout(TimerTask task, long delay, TimeUnit unit):
+        //    schedules the specified TimerTask for one-time execution after the specified delay
+        // task1:
         timer.newTimeout(new NamedTask(), 500, TimeUnit.MILLISECONDS); 
+        // task2:
         timer.newTimeout(
             new TimerTask() {
                 @Override
@@ -37,14 +39,22 @@ public class HashedWheelTimers {
             1000,
             TimeUnit.MILLISECONDS
         ); 
+        // task3:
+        timer.newTimeout(
+            (x) -> { System.out.println("Do Lambda Task"); },
+            1500,
+            TimeUnit.MILLISECONDS
+        );
+
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch(InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        System.out.println("Timer stopped 3 seconds later");
-        // stop():
-        //   releases all resources acquired by Timer and cancels all scheduled tasks not executed yet
+        
+        // 2) stop():
+        //    releases all resources acquired by Timer and cancels all scheduled tasks not executed yet
+        System.out.println("Timer stopped 2 seconds later");
         timer.stop();
     }
 }
