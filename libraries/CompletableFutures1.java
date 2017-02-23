@@ -33,7 +33,6 @@
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.CompletableFuture;
-//import java.util.concurrent.CompletableFuture.CombiningCompletableFutures;
 import java.util.concurrent.ExecutionException;
 
 public class CompletableFutures1 {
