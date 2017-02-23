@@ -2,11 +2,11 @@
 // 1) it facilitates functional programming and simplifies the development
 // 2) syntax characteristics
 //    [parameter] -> [expression body]
-//    a) Optional type declaration: No need to declare the type of a parameter (let compiler inference)
-//    b) Optional parenthesis for single parameter (parentheses are required for multiple parameters)
-//    c) Optional curly braces for single statement: no curly braces is needed if the body contains a single statement
-//    d) Optional return keyword for single expression: compiler automatically returns value if body has a single expression
-//         (curly braces are required to indicate that expression returns a value)
+//    a) optional type declaration: No need to declare the type of a parameter (let compiler inference)
+//    b) optional parenthesis for single parameter (parentheses are required for multiple parameters)
+//    c) optional curly braces for single statement: no curly braces is needed if the body contains a single statement
+//    d) optional return keyword for single expression: compiler automatically returns value if body has a single expression
+//       (curly braces are required to indicate that expression returns a value)
 // examples:
 //    parameter:
 //        () ->                              ... no input

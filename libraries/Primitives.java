@@ -1,3 +1,5 @@
+import java.util.List;
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Primitives {
@@ -37,5 +39,13 @@ public class Primitives {
         if (Character.isAlphabetic(c) && Character.isUpperCase(c)) {
             System.out.println(Character.toLowerCase(c));
         }
+
+        // 4) method reference (classname::method)
+        //    Java 8 introduce the method reference for passing function as an argument to another function 
+        //    (before Java 8, functions cannot be referred and passed as an argument)
+        //    ex. Math::max, System.out::println
+        List<String> list = new ArrayList<String>();
+        list.add("efg"); list.add("bcd"); list.add("abc");
+        list.forEach(System.out::println);         
     }
 }
