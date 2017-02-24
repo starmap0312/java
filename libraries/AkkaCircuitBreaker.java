@@ -37,8 +37,7 @@ import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.pattern.CircuitBreaker;
-import static akka.pattern.Patterns.pipe;
-import static akka.dispatch.Futures.future;
+import akka.dispatch.Futures;
 
 import scala.concurrent.duration.Duration;
 
@@ -94,7 +93,7 @@ class DangerousActor extends UntypedActor {
             if ("async request".equals(msg)) {
                 System.out.println("received 1 async request");
                 breaker.callWithCircuitBreaker(
-                    () -> future(
+                    () -> Futures.future(
                         () -> dangerousCall(),
                         getContext().dispatcher()
                     )
