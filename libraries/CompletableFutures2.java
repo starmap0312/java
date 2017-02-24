@@ -1,3 +1,13 @@
+// 1) Fulfill a promise
+//    explicitly fulfill a promise by calling complete()
+//    register the listener with:
+//      thenAccept(): takes the promise outcome as an argument
+//      thenRun()   : takes a Runnable as the argument, no access to the promise outcome
+// 2) Reject a promise
+//    promise.exceptionally() / promise.completeExceptionally()
+//    signal an error occurrence, i.e. the future did not complete normally but throws an exceptio
+//    you wouldn’t let your actual task throw the exception; instead, you inform the CompletableFuture event listener
+//      that an exception occurred
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.CompletableFuture;
