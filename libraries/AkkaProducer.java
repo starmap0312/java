@@ -1,4 +1,4 @@
-// Akka Actor Model
+// Akka's Actor Model:
 //   a higher level of abstraction for writing concurrent and distributed systems
 import akka.actor.UntypedActor;
 import akka.actor.ActorSystem;

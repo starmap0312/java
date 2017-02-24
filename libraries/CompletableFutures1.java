@@ -1,6 +1,10 @@
+// Futures and promises are non-blocking
+//   they make use of callbacks instead of typical blocking operations
+//   they facilitate callbacks on a higher-level: ex. combinators such as flatMap, foreach, and filter
+//     this composes futures in a non-blocking way
 // Future:
-// a placeholder object that you create for a result that doesn’t yet complete (exist)
-// what is wrong with future and callbacks?
+//   a placeholder object that you create for a result that doesn’t yet complete (exist)
+// What is wrong with future and callbacks?
 // 1) we may need a dedicated error callback function in case an Exception occurs during processing
 // 2) callback hells: it becomes messy once we begin to chain callback functions
 //    ex. if one callback triggers another asynchronous function which in turn takes its own callback, and so on
