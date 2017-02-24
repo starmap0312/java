@@ -12,7 +12,6 @@
 // 3) a CompletionStage is a "promise": it promises that the computation eventually will be done
 // 4) advantages: it offers lots of methods that let you attach callbacks that will be executed on completion
 //                so we can build systems in a non-blocking fashion
-
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -25,15 +24,6 @@ public class CompletableFutures3 {
         //             after it runs the given action
         //    runnable: the action to run before completing the returned CompletableFuture
         //    conceptually, it executes runnable.run() and then future.complete(null) in a worker thread
-        System.out.println("Example 1:");
-        CompletableFuture<Void> future1 = CompletableFuture.runAsync(
-            () -> {
-                System.out.println("Do runAsync task");
-            }
-        );
-        // the caller is blocked until the future is completed (may throw ExecutionException or InterruptedException)
-        System.out.println(future1.get());
-
         // 2) whenComplete([action]):
         //    returns: a new CompletionStage that executes the given action when this stage completes
         System.out.println("Example 2:");
