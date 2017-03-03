@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Primitives {
 
@@ -47,5 +49,11 @@ public class Primitives {
         List<String> list = new ArrayList<String>();
         list.add("efg"); list.add("bcd"); list.add("abc");
         list.forEach(System.out::println);         
+
+        // 5) Date: convert milli-seconds since epoch (integer) to Date
+        Date date = new Date(1457991341000L);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        System.out.println(date);
+        System.out.println(format.format(date));
     }
 }
