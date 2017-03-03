@@ -41,6 +41,8 @@ import akka.dispatch.Futures;
 
 import scala.concurrent.duration.Duration;
 
+import scala.compat.java8.JFunction;
+
 class DangerousActor extends UntypedActor {
     private final CircuitBreaker breaker;
 
@@ -97,6 +99,14 @@ class DangerousActor extends UntypedActor {
                         () -> dangerousCall(),
                         getContext().dispatcher()
                     )
+                ).onComplete(
+                    JFunction.func(
+                        (future) -> {
+                            System.out.println("onComplete: future.isFailure()? " + future.isFailure());
+                            return null;
+                        }
+                    ),
+                    getContext().dispatcher().prepare()
                 );
             }
             if ("sync request".equals(msg)) {
