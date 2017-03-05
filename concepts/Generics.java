@@ -28,7 +28,7 @@
 //   Java: only signature of generic(template) class/function from a compiled class file is needed in order to use it
 //   C++ : static variables are NOT shared between classes of different type parameters
 //   Java: static variables are shared between classes of different type parameters (this reduces some pitfalls)
-//   C++ : template <type T> add(T a, T b) { return a + b; }
+//   C++ : template <typename T> add(T a, T b) { return a + b; }
 //         when called with int and double, two copies of code of type int and double are compiled respectively
 //   Java: <T extends SomeClass> add(T A, T B) { return A.add(B); }
 //         only one copy of the code of type SomeClass is compiled (at runtime all subclasses of SomeClass can invoke add())
