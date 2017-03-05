@@ -42,6 +42,7 @@
 // N: Number
 // T: Type                    (ex. Comparable<T>)
 // S/U/V: 2nd, 3rd, 4th Types
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -109,7 +110,7 @@ class CompiledBoundedGenericClass {
 
 public class Generics {
 
-    public static double sum1(List<Number> list){
+    public static double sumOfList1(List<Number> list){
         // the code is compiled with passed-in type List<Number> and it has no relationship to List<Integer> or List<Double>
         // so we cannot call the function by passing in List<Integer> or List<Double>
         double sum = 0;
@@ -118,9 +119,11 @@ public class Generics {
         }
         return sum;
     }
-    // to make the function more useful, we can write the function using generics upper bounded wildcard 
-    public static double sum2(List<? extends Number> list){
-        // we can now call the function by passing in List<Integer> or List<Double>
+    // to make the function more useful, we can use an upper bounded wildcard to relax restrictions on a variable
+    // we can re-write the function as the following
+    public static double sumOfList2(List<? extends Number> list){
+        // it works on List<Integer>, List<Double>, and List<Number> now
+        // i.e. we can call the function by passing in List<Integer> or List<Double> as well
         double sum = 0;
         for(Number n: list){
             sum += n.doubleValue();
@@ -201,14 +204,12 @@ public class Generics {
         //GenericClass<Object> obj = new GenericClass<String>(); // compile error
         Object obj6 = new GenericClass<String>();                // valid, GenericClass<String> IS_A Object
 
-        List<Number> list3 = new ArrayList<Number>();
-        List<Integer> list4 = new ArrayList<Integer>();
-        list3.add(1.0); list3.add(2.0); list3.add(3.0);
-        list4.add(1);   list4.add(2);   list4.add(3);
-        System.out.println(Generics.sum1(list3));   // 6.0
-        // however, we cannot pass List<Integer> or List<Double> to Generics.sum1(), as the are not related to List<Number>
-        //System.out.println(Generics.sum1(list4)); // error: incompatible types: List<Integer> cannot be converted to List<Number>
+        List<Number> list3 = Arrays.asList(1.0, 2.0, 3.0); 
+        List<Integer> list4 = Arrays.asList(1, 2, 3); 
+        System.out.println(Generics.sumOfList1(list3));   // 6.0
+        // however, we cannot pass List<Integer> or List<Double> to Generics.sumOfList1(), as the are not related to List<Number>
+        //System.out.println(Generics.sumOfList1(list4)); // error: incompatible types: List<Integer> cannot be converted to List<Number>
         // we can define the function using generics uppder bounded wildward 
-        System.out.println(Generics.sum2(list4));   // 6.0 
+        System.out.println(Generics.sumOfList2(list4));   // 6.0 
     }
 }
