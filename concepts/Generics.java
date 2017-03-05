@@ -15,7 +15,7 @@
 //    Generics in Java s to provide type-checking at compile time and it has no use at run time
 //    a) the generic type is erased at runtime by type erasure
 //       this ensures that no new classes are created for parameterized types, so there will be no runtime overhead
-//    b) Java compiler replaces the bounded type parameter T with the first bound interface
+//    b) Java compiler replaces the bounded type parameter T with the "first bound interface" (upperbound)
 //       so only one copy of the code is compiled and all subclasses access the same compiled code
 //       ex.
 //         <T extends SomeClass> T add(T a, T b) { return a.add ( b ); }
@@ -77,8 +77,7 @@ class GenericClass<T> {         // use of generics in class definition
     }
 }
 
-class BoundedGenericClass<T extends GenericInterface<T>> {
-    // Java compiler replaces the bounded type parameter T with the first bound interface, i.e. GenericInterface
+class BoundedGenericClass<T extends GenericInterface<T>> { // use of bounded generics in class defintion
     private T data;
 
     public T get() {
@@ -113,7 +112,7 @@ public class Generics {
     }
 
     // generic method with bounded type parameter
-    public static <T extends GenericInterface<T>> boolean equal(T t1, T t2) {
+    public static <T extends GenericInterface<T>> boolean equal(T t1, T t2) {   // use of bounded generics in method definition
         // the generic type T is bounded, so the code is compiled as if T is replaced by its upperbound GenericInterface<T>
         // if we specify a type parameter that does not implements GenericInterface<T>, it will throw compile time error
         return t1.equal(t2);
