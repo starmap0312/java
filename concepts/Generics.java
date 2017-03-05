@@ -51,6 +51,11 @@ interface GenericInterface<T> { // use of generics in interface definition
     public boolean equal(T o);
 }
 
+// inherit a generic interface
+interface GenericInterfaceSubtype<T> extends GenericInterface<T> {
+    public boolean equal(T o);
+}
+
 class NoGenericClass {          // no use of generics in class defintion
     private Object data;
 
@@ -103,6 +108,24 @@ class CompiledBoundedGenericClass {
 }
 
 public class Generics {
+
+    public static double sum1(List<Number> list){
+        // we cannot call the function by passing in List<Integer> or List<Double>, as they are unrelated to List<Number>
+        double sum = 0;
+        for(Number n: list){
+            sum += n.doubleValue();
+        }
+        return sum;
+    }
+    // to make the function more useful, we can write the function using generics upper bounded wildcard 
+    public static double sum2(List<? extends Number> list){
+        // we can now call the function by passing in List<Integer> or List<Double>
+        double sum = 0;
+        for(Number n: list){
+            sum += n.doubleValue();
+        }
+        return sum;
+    }
 
     // generic method with unbounded type parameter
     public static <T> boolean isEqual(GenericClass<T> g1, GenericClass<T> g2) { // use of generics in method definition
@@ -167,7 +190,24 @@ public class Generics {
         // System.out.println(Generics.isEqual(obj3, obj4));            // inferred types are checked: receive compile error
         //   found: GenericClass<String>,GenericClass<Integer>
         //   reason: inferred type does not conform to equality constraint(s)
-
         
+        // example 4: generics upper bounded wildcard
+        //   instances of generic type of A can NOT be assigned to instance generic type of B even if A is a subclass of B
+        //   because instances of generic classes are not related
+        //   so you need to make the inheritance relationship explicit to upper cast an instance to another
+        Object obj5 = new String("abc");                         // valid, String IS_A Object
+        // however, GenericClass<String> cannot be converted to GenericClass<Object>
+        //GenericClass<Object> obj = new GenericClass<String>(); // compile error
+        Object obj6 = new GenericClass<String>();                // valid, GenericClass<String> IS_A Object
+
+        List<Number> list3 = new ArrayList<Number>();
+        List<Integer> list4 = new ArrayList<Integer>();
+        list3.add(1.0); list3.add(2.0); list3.add(3.0);
+        list4.add(1);   list4.add(2);   list4.add(3);
+        System.out.println(Generics.sum1(list3));   // 6.0
+        // however, we cannot pass List<Integer> or List<Double> to Generics.sum1(), as the are not related to List<Number>
+        //System.out.println(Generics.sum1(list4)); // error: incompatible types: List<Integer> cannot be converted to List<Number>
+        // we can define the function using generics uppder bounded wildward 
+        System.out.println(Generics.sum2(list4));   // 6.0 
     }
 }
