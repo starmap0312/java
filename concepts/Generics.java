@@ -110,7 +110,8 @@ class CompiledBoundedGenericClass {
 public class Generics {
 
     public static double sum1(List<Number> list){
-        // we cannot call the function by passing in List<Integer> or List<Double>, as they are unrelated to List<Number>
+        // the code is compiled with passed-in type List<Number> and it has no relationship to List<Integer> or List<Double>
+        // so we cannot call the function by passing in List<Integer> or List<Double>
         double sum = 0;
         for(Number n: list){
             sum += n.doubleValue();
