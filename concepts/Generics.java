@@ -113,8 +113,9 @@ public class Generics {
 
     // generic method with bounded type parameter
     public static <T extends GenericInterface<T>> boolean equal(T t1, T t2) {   // use of bounded generics in method definition
-        // the generic type T is bounded, so the code is compiled as if T is replaced by its upperbound GenericInterface<T>
-        // if we specify a type parameter that does not implements GenericInterface<T>, it will throw compile time error
+        // the generic type T is bounded, so the code is compiled as if T is replaced by its upperbound, i.e. GenericInterface
+        // if we try to call the method with type parameter that does not implements GenericInterface<T>
+        //   it will throw error at compile time
         return t1.equal(t2);
     }
 
