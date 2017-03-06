@@ -1,9 +1,0 @@
-{
-  name:"Albert Attard",
-  language:"Java",
-  location:"Malta",
-  exam: {
-    subject:"Programming",
-    grade:4.5
-  }
-}

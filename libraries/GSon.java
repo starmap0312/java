@@ -34,19 +34,19 @@ class Person {
 public class GSon {
 
     public static void main(String[] args) throws IOException {
-        // create a GSON instance used for convert Java and JSON objects conversion
+        // create a GSON instance used to convert Java and JSON objects conversion
         Gson gson = new GsonBuilder().create();
         // 1) toJson([Java Object, Appendable]): convert Java objects to JSON objects 
-        // 1.1) write to System.out
-        gson.toJson("Java String", System.out);
+        // 1.1) write the converted JSON object to System.out
+        gson.toJson(new String("Java String"), System.out);
         System.out.println("");
-        // 1.2) write to a file (or network stream) 
-        try (Writer writer = new FileWriter("GSonOuput.json")) {
+        // 1.2) write the converted JSON object to to a file (or network stream) 
+        try (Writer writer = new FileWriter("sample1.json")) {
             String arr[] = {"abc", "bcd", "efg"};
             gson.toJson(arr, writer);
         }
-        // 2) fromJson([Java Object, Appendable]): convert Java objects to JSON objects 
-        try(Reader reader = new InputStreamReader(GSon.class.getResourceAsStream("GSonInput.json"), "UTF-8")) {
+        // 2) fromJson([Java Object, Appendable]): convert JSON object to Java objects
+        try(Reader reader = new InputStreamReader(GSon.class.getResourceAsStream("sample2.json"), "UTF-8")) {
             Person person = gson.fromJson(reader, Person.class);
             System.out.println(person);
         }
