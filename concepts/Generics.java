@@ -110,22 +110,22 @@ class CompiledBoundedGenericClass {
 
 public class Generics {
 
-    public static double sumOfList1(List<Number> list){
+    public static double sumOfList1(List<Number> list) {
         // the code is compiled with passed-in type List<Number> and it has no relationship to List<Integer> or List<Double>
         // so we cannot call the function by passing in List<Integer> or List<Double>
         double sum = 0;
-        for(Number n: list){
+        for(Number n: list) {
             sum += n.doubleValue();
         }
         return sum;
     }
     // to make the function more useful, we can use an upper bounded wildcard to relax restrictions on a variable
     // we can re-write the function as the following
-    public static double sumOfList2(List<? extends Number> list){
+    public static double sumOfList2(List<? extends Number> list) { // ?: wildcard, auto-cast Integer or Double, etc. to Number
         // it works on List<Integer>, List<Double>, and List<Number> now
         // i.e. we can call the function by passing in List<Integer> or List<Double> as well
         double sum = 0;
-        for(Number n: list){
+        for(Number n: list) {
             sum += n.doubleValue();
         }
         return sum;
