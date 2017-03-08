@@ -7,15 +7,15 @@ import com.codahale.metrics.ConsoleReporter;
 import com.codahale.metrics.Meter;
 
 public class Metrics {
-    static final MetricRegistry metrics = new MetricRegistry();
+    static final MetricRegistry metrics = new MetricRegistry(); // 1) create a registry instance
 
     static void startReport() {
-        ConsoleReporter reporter = ConsoleReporter
-            .forRegistry(metrics)
-            .convertRatesTo(TimeUnit.SECONDS)
-            .convertDurationsTo(TimeUnit.MILLISECONDS)
+        ConsoleReporter reporter = ConsoleReporter              // 2) create a reporter instance
+            .forRegistry(metrics)                               //      under which registry
+            .convertRatesTo(TimeUnit.SECONDS)                   //      specify rate time unit
+            .convertDurationsTo(TimeUnit.MILLISECONDS)          //      specify duration time unit
             .build();
-        reporter.start(1, TimeUnit.SECONDS);
+        reporter.start(1, TimeUnit.SECONDS);                    // 3) specify reporter periodicity and start it 
     }
 
     static void wait3Seconds() {
@@ -26,8 +26,8 @@ public class Metrics {
 
     public static void main(String[] args) {
         startReport();
-        Meter requests = metrics.meter("requests");
-        requests.mark();
+        Meter requests = metrics.meter("requests/sec");         // 4) create a meter instance using the registry
+        requests.mark();                                        // 5) make a mark on the meter (count++)
         wait3Seconds();
     }
 }
