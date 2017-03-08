@@ -54,10 +54,14 @@ public class GSon {
             System.out.println(person);
         }
 
-        // JsonParser:
-        // 3) read JSonObjct
+        // 3) JsonParser.parse([String]): read Java String to JSonObject
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse("{ \"key1\": {\"key2\": 3}}");
+        // 4) GsonBuilder().setPrettyPrinting(): 
+        //    toJson([JsonElement]): convert JsonElement to JSON objects 
+        Gson gson2 = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println(gson2.toJson(element));
+        // 5) isJsonObject() and getAsJsonObject():
         if (element.isJsonObject()) {
             JsonObject jsonObject = element.getAsJsonObject();
             JsonElement element2 = jsonObject.get("key1");
