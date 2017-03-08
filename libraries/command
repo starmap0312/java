@@ -1,10 +1,9 @@
-// Scala
-javac -cp ./lib/scala-library-2.11.8.jar Scala.java
-java -cp .:./lib/scala-library-2.11.8.jar Scala
+/////// Testing ///////
 // UnitTest
 javac -cp ./lib/junit-4.12.jar UnitTest.java
 java -cp .:./lib/junit-4.12.jar UnitTest
-/////////////
+
+/////// Concurrent Programming ///////
 // AkkaFuture
 javac -cp ./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaFuture.java
 java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaFuture
@@ -18,23 +17,32 @@ java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-acto
 // AkkaCircuitBreakder
 javac -cp ./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaCircuitBreaker.java
 java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-actor_2.11-2.4.17.jar AkkaCircuitBreaker
+
+/////// Scheduling/Timer ///////
+// HashedWheelTimer 
+javac -cp ./lib/netty-all-4.0.9.Final.jar HashedWheelTimers.java
+java -cp .:./lib/netty-all-4.0.9.Final.jar HashedWheelTimers
+
+///////
 // TypeSafeConfig
 javac -cp ./lib/config-1.2.1.jar TypeSafeConfig.java 
 java -cp .:./lib/config-1.2.1.jar TypeSafeConfig
 // Guice
 javac -cp ./lib/aopalliance-1.0.jar:./lib/guava-19.0.jar/:./lib/guice-4.0.jar:./lib/javax.inject-1.jar GoogleGuice.java
 java -cp .:./lib/aopalliance-1.0.jar:./lib/guava-19.0.jar/:./lib/guice-4.0.jar:./lib/javax.inject-1.jar GoogleGuice
-// HashedWheelTimer 
-javac -cp ./lib/netty-all-4.0.9.Final.jar HashedWheelTimers.java
-java -cp .:./lib/netty-all-4.0.9.Final.jar HashedWheelTimers
 // JFunctions
 javac -cp ./lib/scala-library-2.11.8.jar:./lib/scala-java8-compat_2.11-0.8.0.jar JFunctions.java
 java -cp .:./lib/scala-library-2.11.8.jar:./lib/scala-java8-compat_2.11-0.8.0.jar JFunctions
+// Scala
+javac -cp ./lib/scala-library-2.11.8.jar Scala.java
+java -cp .:./lib/scala-library-2.11.8.jar Scala
+
+/////// Logging ///////
 // Metrics 
 javac -cp ./lib/slf4j-simple-1.7.12.jar:./lib/metrics-core-3.1.2.jar:./lib/slf4j-api-1.7.21.jar Metrics.java
 java -cp .:./lib/slf4j-simple-1.7.12.jar:./lib/metrics-core-3.1.2.jar:./lib/slf4j-api-1.7.21.jar Metrics
 
-/////// data structure or documents //////
+/////// Data Structures/Documents //////
 // JSoup
 javac -cp ./lib/jsoup-1.10.2.jar JSoup.java
 java -cp .:./lib/jsoup-1.10.2.jar JSoup
