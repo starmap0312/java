@@ -21,12 +21,6 @@ java -cp .:./lib/config-1.2.1.jar:./lib/scala-library-2.11.8.jar:./lib/akka-acto
 // TypeSafeConfig
 javac -cp ./lib/config-1.2.1.jar TypeSafeConfig.java 
 java -cp .:./lib/config-1.2.1.jar TypeSafeConfig
-// JSoup
-javac -cp ./lib/jsoup-1.10.2.jar JSoup.java
-java -cp .:./lib/jsoup-1.10.2.jar JSoup
-// GSon 
-javac -cp ./lib/gson-2.6.2.jar GSon.java
-java -cp .:./lib/gson-2.6.2.jar GSon
 // Guice
 javac -cp ./lib/aopalliance-1.0.jar:./lib/guava-19.0.jar/:./lib/guice-4.0.jar:./lib/javax.inject-1.jar GoogleGuice.java
 java -cp .:./lib/aopalliance-1.0.jar:./lib/guava-19.0.jar/:./lib/guice-4.0.jar:./lib/javax.inject-1.jar GoogleGuice
@@ -39,6 +33,14 @@ java -cp .:./lib/scala-library-2.11.8.jar:./lib/scala-java8-compat_2.11-0.8.0.ja
 // Metrics 
 javac -cp ./lib/slf4j-simple-1.7.12.jar:./lib/metrics-core-3.1.2.jar:./lib/slf4j-api-1.7.21.jar Metrics.java
 java -cp .:./lib/slf4j-simple-1.7.12.jar:./lib/metrics-core-3.1.2.jar:./lib/slf4j-api-1.7.21.jar Metrics
+
+/////// data structure or documents //////
+// JSoup
+javac -cp ./lib/jsoup-1.10.2.jar JSoup.java
+java -cp .:./lib/jsoup-1.10.2.jar JSoup
 // JsonObject
 javac -cp ./lib/org.json.jar JsonObject.java
 java -cp .:./lib/org.json.jar JsonObject
+// GSon
+javac -cp ./lib/gson-2.6.2.jar GSon.java
+java -cp .:./lib/gson-2.6.2.jar GSon

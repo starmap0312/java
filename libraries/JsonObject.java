@@ -5,6 +5,7 @@ import java.util.Iterator;
 public class JsonObject {
 
     public static void main(String[] args) throws Exception {
+         // 0) JSONObject([string]): construct a JSONObject from a Java String
          String str = "{\"key1\": \"string1\", \"key2\": 2}";
          JSONObject jsonObj = new JSONObject(str);
          // 1) get([key])
