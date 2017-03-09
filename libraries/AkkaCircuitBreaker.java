@@ -43,7 +43,7 @@ import scala.concurrent.duration.Duration;
 
 import scala.compat.java8.JFunction;
 
-class DangerousActor extends UntypedActor {
+class DangerousActor extends UntypedActor {    // 1) use circuit breaker inside an akka actor
     private final CircuitBreaker breaker;
 
     public DangerousActor() {
@@ -78,9 +78,9 @@ class DangerousActor extends UntypedActor {
         );
     }
 
-    public String dangerousCall() {
+    public String dangerousCall() {         // the task function that may took a long time or even experience failure
         try {
-            Thread.sleep(5000);                 // sleep 5 seconds
+            Thread.sleep(5000);             // simulating long task (sleep 5 seconds)
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
@@ -89,17 +89,17 @@ class DangerousActor extends UntypedActor {
     }
 
     @Override
-    public void onReceive(Object message) {
+    public void onReceive(Object message) {     // on receive sender's message, the actor calls the task function with its circuit breaker
         if (message instanceof String) {
             String msg = (String) message;
             if ("async request".equals(msg)) {
                 System.out.println("received 1 async request");
-                breaker.callWithCircuitBreaker(
+                breaker.callWithCircuitBreaker( // the task function is wrapped inside a future (its timeout/failure will trigger breaker)
                     () -> Futures.future(
                         () -> dangerousCall(),
                         getContext().dispatcher()
                     )
-                ).onComplete(
+                ).onComplete(                   // on complete of the future, do things like logging (get result from future) or error handling
                     JFunction.func(
                         (future) -> {
                             System.out.println("onComplete: future.isFailure()? " + future.isFailure());
