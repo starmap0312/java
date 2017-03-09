@@ -55,5 +55,8 @@ public class Primitives {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         System.out.println(date);
         System.out.println(format.format(date));
+
+        // 6) print out the full class name (used with logging)
+        System.out.println(String.class.getName()); // java.lang.String
     }
 }

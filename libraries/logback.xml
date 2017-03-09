@@ -1,0 +1,36 @@
+<configuration>
+  <!-- set up date format -->
+  <timestamp key="dateformat" datePattern="yyyyMMdd"/>
+
+  <!-- create an appender for console logging: ConsoleAppender -->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %-5level- %msg %n</Pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+
+  <!-- create an appender for file logging: FileAppender -->
+  <appender name="logfile" class="ch.qos.logback.core.FileAppender">
+    <File>logfile.log.${dateformat}</File>
+    <encoder>
+      <Pattern>%msg %n</Pattern>
+    </encoder>
+    <append>true</append>
+    <prudent>false</prudent>
+  </appender>
+
+  <!-- set up a logger for default (applied to every class files under project root) -->
+  <root level="WARN">
+    <appender-ref ref="stdout" />    <!-- add stdout appender to root logger -->
+    <appender-ref ref="logfile" />   <!-- add logfile appender to root logger -->
+  </root>
+
+  <!-- set up a logger for a specific package or class (applied to every class files under the package/class) -->
+  <logger name="Logging" level="INFO" />
+    <appender-ref ref="logfile" />   <!-- add logfile appender to package logger -->
+  </logger>
+   
+</configuration>
