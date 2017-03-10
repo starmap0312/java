@@ -11,8 +11,8 @@ class Consumer extends UntypedActor {
     //   it is the Java cousin to the Actor Scala interface
  
     @Override
-    public void onReceive(Object msg) throws Exception {
-        if(msg instanceof Integer) {
+    public void onReceive(Object msg) throws Exception { // Akka OnReceive() method accepts only Object type message
+        if(msg instanceof Integer) {                     // we often decide what to do based on type of message we received
             System.out.println("<<< Consumer: Receiving & printing " + msg);
         }
     }
