@@ -1,5 +1,5 @@
 // com.typesafe.config.Config:
-//   it provides API for obtaining values from a Config instance
+//   it provides API for obtaining values from a Config instance (HOCON format)
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.Config;
 
