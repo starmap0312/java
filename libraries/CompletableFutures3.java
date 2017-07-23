@@ -20,12 +20,11 @@ public class CompletableFutures3 {
 
     public static void main(String[] args) throws Exception {
         // 1) runAsync([Runnable runnable]):
-        //    returns: a new CompletableFuture that is asynchronously completed by a task running in the ForkJoinPool.commonPool()
-        //             after it runs the given action
+        //    returns a new CompletableFuture that is asynchronously completed by a task running in the ForkJoinPool
         //    runnable: the action to run before completing the returned CompletableFuture
         //    conceptually, it executes runnable.run() and then future.complete(null) in a worker thread
         // 2) whenComplete([action]):
-        //    returns: a new CompletionStage that executes the given action when this stage completes
+        //    returns a new CompletionStage with the same result or exception as this stage, that executes the given action when this stage completes
         System.out.println("Example 2:");
         CompletableFuture<Void> future2 = CompletableFuture.runAsync(
             () -> {

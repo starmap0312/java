@@ -2,6 +2,7 @@
 //   they make use of callbacks instead of typical blocking operations
 //   they facilitate callbacks on a higher-level: ex. combinators such as flatMap, foreach, and filter
 //     this composes futures in a non-blocking way
+
 // Future:
 //   a placeholder object that you create for a result that doesn’t yet complete (exist)
 // What is wrong with future and callbacks?
@@ -11,12 +12,14 @@
 //        (rather common in the JavaScript / Node.js applications) 
 // 3) we need to make sure a callback is called multiple times by ourselves 
 // 4) if there are several asynchronous tasks in sequence, we may want a callback only when the last task has completed
+
 // Promise/CompletableFuture:
 // 1) a sensible mechanism to mitigate callback hell and write clean asynchronous code
 //    it replaces callbacks which signal successful or exceptional completion of a function
 //    (it must be fulfilled at most once)
 // 2) it supports Lambdas (functional), parallelism (all its methods can run asyncrhonously) 
 //    it is event driven so we can build systems in a non-blocking fashion
+
 // Two most typical use cases of Promise/CompletableFuture:
 //   when you want to collect the result of an asynchronous task or multiple asynchronous tasks
 // 1) Parallel computing on multiple CPU cores
