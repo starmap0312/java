@@ -1,6 +1,6 @@
 // Circuit Breaker
 // 1) used to provide stability and prevent cascading failures in distributed systems
-// 2) circuit breaker mitigates the problem by detecting slow or failed dependencies, and stops the sending of further requests
+// 2) circuit breaker mitigates the problem by detecting slow or failed dependencies and stops the sending of further requests
 // ex.
 //   a web application depends on (interacting with) a remote third party web service (or database)
 //   assume that the third party web service fail and could not reply in time
@@ -21,7 +21,7 @@
 //
 // 5) Akka circuit breaker
 //    it monitors timeouts and failures of requests to the third party web service
-//    when the circuit is open, it wll fail user responses immediately, telling users to come back later
+//    when the circuit is open, it will fail user responses immediately, telling users to come back later
 //    i.e. circuit will be open after a predefined number of consecutive failures
 //           failed request is determined by configurable timeout
 //         the circuit will remain open for a predefined amount of time
@@ -89,7 +89,7 @@ class DangerousActor extends UntypedActor {    // 1) use circuit breaker inside 
     }
 
     @Override
-    public void onReceive(Object message) {     // on receive sender's message, the actor calls the task function with its circuit breaker
+    public void onReceive(Object message) {     // on receive sender's message, the actor calls the task function through its circuit breaker
         if (message instanceof String) {
             String msg = (String) message;
             if ("async request".equals(msg)) {
@@ -99,7 +99,7 @@ class DangerousActor extends UntypedActor {    // 1) use circuit breaker inside 
                         () -> dangerousCall(),
                         getContext().dispatcher()
                     )
-                ).onComplete(                   // on complete of the future, do things like logging (get result from future) or error handling
+                ).onComplete(                   // on complete of the future, do things like logging (i.e. get result from future and log) or error handling
                     JFunction.func(
                         (future) -> {
                             System.out.println("onComplete: future.isFailure()? " + future.isFailure());
