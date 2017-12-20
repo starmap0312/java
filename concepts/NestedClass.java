@@ -40,22 +40,6 @@ interface InputStream {
 // final InputStream input = new FileInputStream("/tmp/a.txt");
 // final byte b = new InputStream.SingleByte(input).read();     // read a single byte from the file input stream
 
-// ex2. a "default" inner class implementation of an interface
-interface Postman {
-
-    public void send(String msg);
-
-}
-class Default implements Postman {
-
-    @Override
-    public void send(String msg) {
-        System.out.println("an implementation of Postman.");
-    }
-}
-// the client code
-// Postman postman = new DefaultPostman();
-
 // 2) Static Nested Classes
 //    like static class methods, a static nested class cannot refer directly to instance variables or methods defined in its outer class
 //    it can use them only through an object reference
@@ -68,6 +52,23 @@ class OuterClass {
 
     } 
 }
+
+// ex2. a private static final inner class that is used only by an outer class 
+interface Request { }
+interface RequestURI { }
+final class BaseRequest implements Request {
+
+    private static final class BaseURI implements RequestURI {
+        // as BaseURI is only used inside BaseRequest, we put the BaseURI class implementation inside BaseRequest class 
+
+        public RequestURI uri() {
+            return new BaseRequest.BaseURI();
+        }
+    }
+}
+// the client code: the outside world does not need to know how class BaseURI is implemented
+// BaseRequest request = new BaseRequest();
+// RequestURI uri = request.uri();
 
 public class NestedClass {
     public static void main(String[] args) {
