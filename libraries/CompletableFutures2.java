@@ -19,7 +19,7 @@ public class CompletableFutures2 {
     public static void main(String[] args) throws Exception {
         // 1) thenApply([function]):
         //    returns a new CompletionStage that, when this stage completes normally, is executed with this stage's result as the argument to the supplied function (Function)
-        // 2) thenAccept([action]):
+        // 2) thenAccept([action/consumer]):
         //    returns a new CompletionStage that, when this stage completes normally, is executed with this stage's result as the argument to the supplied action (Consumer)
         System.out.println("Example 1:");
         CompletableFuture future = CompletableFuture.supplyAsync(
