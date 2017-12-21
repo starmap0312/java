@@ -1,17 +1,15 @@
-// Future:
-// 1) the pending result of an asynchronous computation
-// 2) use get() method to get the result of the computation when it's done
-//    the call is blocking until the computation is done
-//    this makes the asynchronous computation pointless
-// 3) it decouples future task execution from the callback
-//    once the future task computation is finished, the callback is invoked with the computation result
-// CompletableFuture/Promise:
-// 1) a Promise is a Future that may be explicitly completed
-//    whereas, a Future represents the result of a computation which may or may not be completed in the future
-// 2) it not only implementing the Future interface but also the CompletionStage interface
-// 3) a CompletionStage is a "promise": it promises that the computation eventually will be done
-// 4) advantages: it offers lots of methods that let you attach callbacks that will be executed on completion
-//                so we can build systems in a non-blocking fashion
+// Java CompletableFuture (Promise)
+// 1) Fulfill a promise
+//    explicitly fulfill a promise by calling complete()
+//    register the listener with:
+//      thenAccept(): takes the promise outcome as an argument
+//      thenRun()   : takes a Runnable as the argument, no access to the promise outcome
+// 2) Reject a promise
+//    promise.exceptionally() / promise.completeExceptionally()
+//    signal an error occurrence, i.e. the future did not complete normally but throws an exception
+//    you wouldn’t let your actual task throw the exception; instead, you inform the CompletableFuture event listener
+//      that an exception occurred
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -19,21 +17,45 @@ import java.util.concurrent.ExecutionException;
 public class CompletableFutures3 {
 
     public static void main(String[] args) throws Exception {
-        // 1) runAsync([Runnable runnable]):
-        //    returns a new CompletableFuture that is asynchronously completed by a task running in the ForkJoinPool
-        //    runnable: the action to run before completing the returned CompletableFuture
-        //    conceptually, it executes runnable.run() and then future.complete(null) in a worker thread
-        // 2) whenComplete([action]):
-        //    returns a new CompletionStage with the same result or exception as this stage, that executes the given action when this stage completes
-        System.out.println("Example 2:");
-        CompletableFuture<Void> future2 = CompletableFuture.runAsync(
+        // 1) thenApply([function]):
+        //    returns a new CompletionStage that, when this stage completes normally, is executed with this stage's result as the argument to the supplied function (Function)
+        // 2) thenAccept([action/consumer]):
+        //    returns a new CompletionStage that, when this stage completes normally, is executed with this stage's result as the argument to the supplied action (Consumer)
+        System.out.println("Example 1:");
+        CompletableFuture future = CompletableFuture.supplyAsync(
             () -> {
-                System.out.println("Do runAsync task");
+                System.out.println("Do supplyAsync task");
+                return "Step 1 return";
             }
-        ).whenComplete(
-            (result, throwable) -> {
-                System.out.println("Do whenComplete task");
+        ).thenApply(  // a Function
+            (String result) -> {
+                System.out.println("Got supplyAsync's return: " + result);
+                System.out.println("Do thenApply task");
+                return "Step 2 return";
             }
+        ).thenAccept( // a Consumer
+            (String result) -> {
+                System.out.println("Got thenApply's return: " + result);
+                System.out.println("Do thenAccept task");
+            }
+        );
+
+        // 3) thenCompose([function]):
+        //    returns a new CompletionStage that, when this stage completes normally, is executed with this stage as the argument to the supplied function
+        System.out.println("Example 2:");
+        CompletableFuture future2 = CompletableFuture.supplyAsync(
+            () -> {
+                System.out.println("Do supplyAsync task");
+                return "Step 1 return";
+            }
+        ).thenCompose(
+            (String result) -> CompletableFuture.supplyAsync(
+                () -> {
+                    System.out.println("Got supplyAsync's return: " + result);
+                    System.out.println("Do thenCompose task");
+                    return "Step 2 return";
+                }
+            )
         );
     }
 }
