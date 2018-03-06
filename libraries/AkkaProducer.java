@@ -1,5 +1,12 @@
 // Akka's Actor Model:
-//   a higher level of abstraction for writing concurrent and distributed systems
+// a higher level of abstraction for writing concurrent and distributed systems
+// it provides:
+// 1) multi-threaded behavior without the use of low-level concurrency constructs, ex. atomics or locks
+//    relieving you from even thinking about memory visibility issues
+// 2) transparent remote communication between systems and their components
+//    relieving you from writing and maintaining difficult networking code
+// 3) a clustered, high-availability architecture that is elastic, scales in or out, on demand
+//    enabling you to deliver a truly reactive system
 import akka.actor.UntypedActor;
 import akka.actor.ActorSystem;
 import akka.actor.ActorRef;
@@ -42,7 +49,7 @@ public class AkkaProducer {
         // tell(): it means "fire-and-forget"
         //   it sends a message asynchronously and return immediately 
         //   in Scala, use: myActor ! message
-        // ask():
+        // ask():  it means "send-and-receive-future"
         //   it sends a message asynchronously and returns a Future representing a possible reply
         //   in Scala, use: myActor ? message
         // ActorRef.noSender():
