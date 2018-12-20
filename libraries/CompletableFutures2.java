@@ -13,7 +13,7 @@
 // 3) we need to make sure a callback is called multiple times by ourselves 
 // 4) if there are several asynchronous tasks in sequence, we may want a callback only when the last task has completed
 
-// Promise/CompletableFuture:
+// CompletableFuture (Promise):
 // 1) a sensible mechanism to mitigate callback hell and write clean asynchronous code
 //    it replaces callbacks which signal successful or exceptional completion of a function
 //    (it must be fulfilled at most once)
